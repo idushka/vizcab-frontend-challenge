@@ -20,10 +20,10 @@ onMounted(async () => {
 })
 
 const sortedBuildingsList = computed(() => {
-  if (props.sortingCriteria === 'surface') {
-    return [...buildingList.value].sort((a, b) => b.surface - a.surface)
-  } else if (props.sortingCriteria === 'carbon_emission') {
-    return [...buildingList.value].sort((a, b) => b.carbon_emission - a.carbon_emission)
+  if (['surface', 'carbon'].includes(props.sortingCriteria)) {
+    return [...buildingList.value].sort(
+      (a, b) => b[props.sortingCriteria] - a[props.sortingCriteria]
+    )
   } else {
     return buildingList.value
   }
